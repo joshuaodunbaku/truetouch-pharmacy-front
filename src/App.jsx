@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Index from './pages/Index.jsx';
-// import About from './pages/About.jsx';
-// import Contact from './pages/Contact.jsx';
-// import Products from './pages/Products.jsx';
-// import Dashboard from './pages/Dashboard.jsx';
-import NotFound from './pages/NotFound.jsx';
+import Index from './Routes/Index.jsx';
+// import About from './Routes/About.jsx';
+// import Contact from './Routes/Contact.jsx';
+// import Products from './Routes/Products.jsx';
+// import Dashboard from './Routes/Dashboard.jsx';
+import NotFound from './Routes/NotFound.jsx';
 
 const App = () => (
   <BrowserRouter>
