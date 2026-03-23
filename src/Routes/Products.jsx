@@ -6,36 +6,11 @@ import { Heart, Star, ShoppingCart, Search, SlidersHorizontal } from 'lucide-rea
 
 const categories = ['All', 'Supplements', 'Vitamins', 'Medical Supplies', 'Personal Care', 'Devices', 'Pain Relief', 'Skin Care'];
 
-const allProducts = [
-  { name: 'Vitamin D3 Complex', category: 'Supplements', price: 12500, oldPrice: 15000, rating: 4.8, reviews: 124, badge: 'Best Seller', badgeColor: '#e74c3c' },
-  { name: 'Daily Multivitamin', category: 'Vitamins', price: 9500, rating: 4.6, reviews: 89 },
-  { name: 'Omega-3 Fish Oil', category: 'Supplements', price: 18500, oldPrice: 22000, rating: 4.9, reviews: 203, badge: 'Sale', badgeColor: 'var(--mc-accent)' },
-  { name: 'First Aid Kit Pro', category: 'Medical Supplies', price: 27500, rating: 4.7, reviews: 67, badge: 'New', badgeColor: 'var(--mc-primary)' },
-  { name: 'Blood Pressure Monitor', category: 'Devices', price: 45000, oldPrice: 60000, rating: 4.8, reviews: 156, badge: 'Sale', badgeColor: 'var(--mc-accent)' },
-  { name: 'Organic Hand Sanitizer', category: 'Personal Care', price: 3500, rating: 4.5, reviews: 312 },
-  { name: 'Immune Boost Tablets', category: 'Supplements', price: 11500, rating: 4.7, reviews: 178, badge: 'Popular', badgeColor: '#9b59b6' },
-  { name: 'Digital Thermometer', category: 'Devices', price: 8500, rating: 4.6, reviews: 94 },
-  { name: 'Vitamin C 1000mg', category: 'Vitamins', price: 7500, rating: 4.8, reviews: 267 },
-  { name: 'Pain Relief Gel', category: 'Pain Relief', price: 6500, oldPrice: 8000, rating: 4.5, reviews: 143, badge: 'Sale', badgeColor: 'var(--mc-accent)' },
-  { name: 'Moisturizing Cream', category: 'Skin Care', price: 10500, rating: 4.6, reviews: 89 },
-  { name: 'Zinc Supplements', category: 'Supplements', price: 5500, rating: 4.4, reviews: 76 },
-  { name: 'Bandage Roll Set', category: 'Medical Supplies', price: 4500, rating: 4.7, reviews: 201 },
-  { name: 'Sunscreen SPF 50', category: 'Skin Care', price: 8500, rating: 4.8, reviews: 185, badge: 'Popular', badgeColor: '#9b59b6' },
-  { name: 'Ibuprofen Tablets', category: 'Pain Relief', price: 3200, rating: 4.5, reviews: 456 },
-  { name: 'Pulse Oximeter', category: 'Devices', price: 22000, oldPrice: 30000, rating: 4.7, reviews: 112, badge: 'Sale', badgeColor: 'var(--mc-accent)' },
-];
-
 const formatNaira = (amount) => `₦${amount.toLocaleString()}`;
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-
-  const filtered = allProducts.filter((p) => {
-    const matchCategory = activeCategory === 'All' || p.category === activeCategory;
-    const matchSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchCategory && matchSearch;
-  });
 
   return (
     <div>
@@ -75,7 +50,7 @@ const Products = () => {
               </div>
               <div className="d-flex align-items-center gap-2">
                 <SlidersHorizontal size={16} className="text-muted-custom" />
-                <span className="text-muted-custom" style={{ fontSize: '0.9rem' }}>{filtered.length} products</span>
+                <span className="text-muted-custom" style={{ fontSize: '0.9rem' }}>16 products</span>
               </div>
             </div>
 
@@ -94,15 +69,12 @@ const Products = () => {
 
             {/* Product Grid */}
             <Row className="g-4">
-              {filtered.map((product, index) => (
-                <Col key={index} sm={6} lg={3}>
+              {/* Vitamin D3 Complex */}
+              {(activeCategory === 'All' || activeCategory === 'Supplements') && (!searchTerm || 'vitamin d3 complex'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
                   <div className="product-card">
                     <div className="product-img-wrap">
-                      {product.badge && (
-                        <span className="product-badge text-white" style={{ backgroundColor: product.badgeColor }}>
-                          {product.badge}
-                        </span>
-                      )}
+                      <span className="product-badge text-white" style={{ backgroundColor: '#e74c3c' }}>Best Seller</span>
                       <button className="product-wishlist">
                         <Heart size={16} />
                       </button>
@@ -111,20 +83,22 @@ const Products = () => {
                       </div>
                     </div>
                     <div className="card-body">
-                      <span className="product-category">{product.category}</span>
-                      <h6 className="product-title">{product.name}</h6>
+                      <span className="product-category">Supplements</span>
+                      <h6 className="product-title">Vitamin D3 Complex</h6>
                       <div className="d-flex align-items-center gap-1 mb-2">
                         <div className="star-rating">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={13} fill={i < Math.floor(product.rating) ? 'currentColor' : 'none'} />
-                          ))}
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
                         </div>
-                        <small className="text-muted-custom">({product.reviews})</small>
+                        <small className="text-muted-custom">(124)</small>
                       </div>
                       <div className="d-flex justify-content-between align-items-center">
                         <div className="product-price">
-                          {formatNaira(product.price)}
-                          {product.oldPrice && <span className="old-price">{formatNaira(product.oldPrice)}</span>}
+                          {formatNaira(12500)}
+                          <span className="old-price">{formatNaira(15000)}</span>
                         </div>
                         <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
                           <ShoppingCart size={14} />
@@ -133,16 +107,597 @@ const Products = () => {
                     </div>
                   </div>
                 </Col>
-              ))}
+              )}
+
+              {/* Daily Multivitamin */}
+              {(activeCategory === 'All' || activeCategory === 'Vitamins') && (!searchTerm || 'daily multivitamin'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Vitamins</span>
+                      <h6 className="product-title">Daily Multivitamin</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(89)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(9500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Omega-3 Fish Oil */}
+              {(activeCategory === 'All' || activeCategory === 'Supplements') && (!searchTerm || 'omega-3 fish oil'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: 'var(--mc-accent)' }}>Sale</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Supplements</span>
+                      <h6 className="product-title">Omega-3 Fish Oil</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                        </div>
+                        <small className="text-muted-custom">(203)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(18500)}
+                          <span className="old-price">{formatNaira(22000)}</span>
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* First Aid Kit Pro */}
+              {(activeCategory === 'All' || activeCategory === 'Medical Supplies') && (!searchTerm || 'first aid kit pro'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: 'var(--mc-primary)' }}>New</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Medical Supplies</span>
+                      <h6 className="product-title">First Aid Kit Pro</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(67)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(27500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
             </Row>
 
-            {filtered.length === 0 && (
-              <div className="text-center py-5">
-                <Search size={48} style={{ color: 'var(--mc-text-muted)', opacity: 0.4 }} />
-                <h5 className="mt-3">No products found</h5>
-                <p className="text-muted-custom">Try adjusting your search or filter criteria.</p>
-              </div>
-            )}
+            {/* Blood Pressure Monitor */}
+            <Row className="g-4">
+              {(activeCategory === 'All' || activeCategory === 'Devices') && (!searchTerm || 'blood pressure monitor'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: 'var(--mc-accent)' }}>Sale</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Devices</span>
+                      <h6 className="product-title">Blood Pressure Monitor</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(156)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(45000)}
+                          <span className="old-price">{formatNaira(60000)}</span>
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Organic Hand Sanitizer */}
+              {(activeCategory === 'All' || activeCategory === 'Personal Care') && (!searchTerm || 'organic hand sanitizer'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Personal Care</span>
+                      <h6 className="product-title">Organic Hand Sanitizer</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(312)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(3500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Immune Boost Tablets */}
+              {(activeCategory === 'All' || activeCategory === 'Supplements') && (!searchTerm || 'immune boost tablets'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: '#9b59b6' }}>Popular</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Supplements</span>
+                      <h6 className="product-title">Immune Boost Tablets</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(178)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(11500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Digital Thermometer */}
+              {(activeCategory === 'All' || activeCategory === 'Devices') && (!searchTerm || 'digital thermometer'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Devices</span>
+                      <h6 className="product-title">Digital Thermometer</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(94)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(8500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+            </Row>
+
+            {/* Third Row of Products */}
+            <Row className="g-4">
+              {/* Vitamin C 1000mg */}
+              {(activeCategory === 'All' || activeCategory === 'Vitamins') && (!searchTerm || 'vitamin c 1000mg'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Vitamins</span>
+                      <h6 className="product-title">Vitamin C 1000mg</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(267)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(7500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Pain Relief Gel */}
+              {(activeCategory === 'All' || activeCategory === 'Pain Relief') && (!searchTerm || 'pain relief gel'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: 'var(--mc-accent)' }}>Sale</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Pain Relief</span>
+                      <h6 className="product-title">Pain Relief Gel</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(143)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(6500)}
+                          <span className="old-price">{formatNaira(8000)}</span>
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Moisturizing Cream */}
+              {(activeCategory === 'All' || activeCategory === 'Skin Care') && (!searchTerm || 'moisturizing cream'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Skin Care</span>
+                      <h6 className="product-title">Moisturizing Cream</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(89)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(10500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Zinc Supplements */}
+              {(activeCategory === 'All' || activeCategory === 'Supplements') && (!searchTerm || 'zinc supplements'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Supplements</span>
+                      <h6 className="product-title">Zinc Supplements</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(76)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(5500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+            </Row>
+
+            {/* Fourth Row of Products */}
+            <Row className="g-4">
+              {/* Bandage Roll Set */}
+              {(activeCategory === 'All' || activeCategory === 'Medical Supplies') && (!searchTerm || 'bandage roll set'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Medical Supplies</span>
+                      <h6 className="product-title">Bandage Roll Set</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(201)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(4500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Sunscreen SPF 50 */}
+              {(activeCategory === 'All' || activeCategory === 'Skin Care') && (!searchTerm || 'sunscreen spf 50'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: '#9b59b6' }}>Popular</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Skin Care</span>
+                      <h6 className="product-title">Sunscreen SPF 50</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(185)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(8500)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Ibuprofen Tablets */}
+              {(activeCategory === 'All' || activeCategory === 'Pain Relief') && (!searchTerm || 'ibuprofen tablets'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Pain Relief</span>
+                      <h6 className="product-title">Ibuprofen Tablets</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(456)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(3200)}
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+
+              {/* Pulse Oximeter */}
+              {(activeCategory === 'All' || activeCategory === 'Devices') && (!searchTerm || 'pulse oximeter'.toLowerCase().includes(searchTerm.toLowerCase())) && (
+                <Col sm={6} lg={3}>
+                  <div className="product-card">
+                    <div className="product-img-wrap">
+                      <span className="product-badge text-white" style={{ backgroundColor: 'var(--mc-accent)' }}>Sale</span>
+                      <button className="product-wishlist">
+                        <Heart size={16} />
+                      </button>
+                      <div style={{ height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <ShoppingCart size={48} style={{ color: 'var(--mc-primary)', opacity: 0.3 }} />
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <span className="product-category">Devices</span>
+                      <h6 className="product-title">Pulse Oximeter</h6>
+                      <div className="d-flex align-items-center gap-1 mb-2">
+                        <div className="star-rating">
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="currentColor" />
+                          <Star size={13} fill="none" />
+                        </div>
+                        <small className="text-muted-custom">(112)</small>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="product-price">
+                          {formatNaira(22000)}
+                          <span className="old-price">{formatNaira(30000)}</span>
+                        </div>
+                        <button className="btn btn-primary btn-sm" style={{ borderRadius: 8, padding: '6px 12px' }}>
+                          <ShoppingCart size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              )}
+            </Row>
           </Container>
         </section>
       </main>
