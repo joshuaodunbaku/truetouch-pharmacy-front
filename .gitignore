@@ -24,8 +24,6 @@ dist-ssr
 *.sw?
 
 # Unused page files
-src/Routes/About.jsx
 src/Routes/Contact.jsx
-src/Routes/Products.jsx
 src/Routes/Dashboard.jsx
  
