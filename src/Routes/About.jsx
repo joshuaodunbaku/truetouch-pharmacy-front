@@ -3,29 +3,6 @@ import Footer from '../components/Footer.jsx';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Heart, Users, Award, Shield, Target, Leaf, Eye, Handshake } from 'lucide-react';
 
-const stats = [
-  { number: '25+', label: 'Years of Service' },
-  { number: '50K+', label: 'Happy Customers' },
-  { number: '10K+', label: 'Products Available' },
-  { number: '98%', label: 'Customer Satisfaction' },
-];
-
-const values = [
-  { icon: Heart, title: 'Compassion', desc: 'We treat every customer with genuine care and empathy, understanding their shopping and health needs.' },
-  { icon: Shield, title: 'Trust', desc: 'Building lasting relationships through transparency, honesty, and reliable service.' },
-  { icon: Target, title: 'Excellence', desc: 'Committed to the highest standards in pharmaceutical care and customer service.' },
-  { icon: Leaf, title: 'Quality', desc: 'Promoting excellence in every product we offer - from medications to groceries and pet supplies.' },
-  { icon: Eye, title: 'Innovation', desc: 'Embracing modern solutions to make shopping more convenient and accessible for all your needs.' },
-  { icon: Handshake, title: 'Community', desc: 'Active participants in community initiatives, supporting local farmers and pet welfare programs.' },
-];
-
-const team = [
-  { name: 'Dr. James Wilson', role: 'Head Pharmacist', initial: 'JW' },
-  { name: 'Dr. Sarah Mitchell', role: 'Clinical Pharmacist', initial: 'SM' },
-  { name: 'Robert Chen', role: 'Operations Manager', initial: 'RC' },
-  { name: 'Lisa Thompson', role: 'Customer Relations', initial: 'LT' },
-];
-
 const About = () => {
   return (
     <div>
@@ -85,14 +62,30 @@ const About = () => {
         <section className="bg-section section-padding">
           <Container>
             <Row>
-              {stats.map((stat, index) => (
-                <Col key={index} sm={6} lg={3}>
-                  <div className="stat-card">
-                    <div className="stat-number">{stat.number}</div>
-                    <p className="text-muted-custom mt-2 mb-0" style={{ fontWeight: 500 }}>{stat.label}</p>
-                  </div>
-                </Col>
-              ))}
+              <Col sm={6} lg={3}>
+                <div className="stat-card">
+                  <div className="stat-number">25+</div>
+                  <p className="text-muted-custom mt-2 mb-0" style={{ fontWeight: 500 }}>Years of Service</p>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div className="stat-card">
+                  <div className="stat-number">50K+</div>
+                  <p className="text-muted-custom mt-2 mb-0" style={{ fontWeight: 500 }}>Happy Customers</p>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div className="stat-card">
+                  <div className="stat-number">10K+</div>
+                  <p className="text-muted-custom mt-2 mb-0" style={{ fontWeight: 500 }}>Products Available</p>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div className="stat-card">
+                  <div className="stat-number">98%</div>
+                  <p className="text-muted-custom mt-2 mb-0" style={{ fontWeight: 500 }}>Customer Satisfaction</p>
+                </div>
+              </Col>
             </Row>
           </Container>
         </section>
@@ -108,20 +101,60 @@ const About = () => {
               </p>
             </div>
             <Row className="g-4">
-              {values.map((value, index) => {
-                const Icon = value.icon;
-                return (
-                  <Col key={index} md={6} lg={4}>
-                    <div className="value-card">
-                      <div className="value-icon">
-                        <Icon size={26} />
-                      </div>
-                      <h5>{value.title}</h5>
-                      <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>{value.desc}</p>
-                    </div>
-                  </Col>
-                );
-              })}
+              <Col md={6} lg={4}>
+                <div className="value-card">
+                  <div className="value-icon">
+                    <Heart size={26} />
+                  </div>
+                  <h5>Compassion</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>We treat every customer with genuine care and empathy, understanding their shopping and health needs.</p>
+                </div>
+              </Col>
+              <Col md={6} lg={4}>
+                <div className="value-card">
+                  <div className="value-icon">
+                    <Shield size={26} />
+                  </div>
+                  <h5>Trust</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>Building lasting relationships through transparency, honesty, and reliable service.</p>
+                </div>
+              </Col>
+              <Col md={6} lg={4}>
+                <div className="value-card">
+                  <div className="value-icon">
+                    <Target size={26} />
+                  </div>
+                  <h5>Excellence</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>Committed to the highest standards in pharmaceutical care and customer service.</p>
+                </div>
+              </Col>
+              <Col md={6} lg={4}>
+                <div className="value-card">
+                  <div className="value-icon">
+                    <Leaf size={26} />
+                  </div>
+                  <h5>Quality</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>Promoting excellence in every product we offer - from medications to groceries and pet supplies.</p>
+                </div>
+              </Col>
+              <Col md={6} lg={4}>
+                <div className="value-card">
+                  <div className="value-icon">
+                    <Eye size={26} />
+                  </div>
+                  <h5>Innovation</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>Embracing modern solutions to make shopping more convenient and accessible for all your needs.</p>
+                </div>
+              </Col>
+              <Col md={6} lg={4}>
+                <div className="value-card">
+                  <div className="value-icon">
+                    <Handshake size={26} />
+                  </div>
+                  <h5>Community</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.92rem' }}>Active participants in community initiatives, supporting local farmers and pet welfare programs.</p>
+                </div>
+              </Col>
             </Row>
           </Container>
         </section>
@@ -137,15 +170,34 @@ const About = () => {
               </p>
             </div>
             <Row className="g-4 justify-content-center">
-              {team.map((member, index) => (
-                <Col key={index} sm={6} lg={3}>
-                  <div className="team-card">
-                    <div className="team-avatar">{member.initial}</div>
-                    <h5 style={{ fontSize: '1.1rem' }}>{member.name}</h5>
-                    <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>{member.role}</p>
-                  </div>
-                </Col>
-              ))}
+              <Col sm={6} lg={3}>
+                <div className="team-card">
+                  <div className="team-avatar">JW</div>
+                  <h5 style={{ fontSize: '1.1rem' }}>Dr. James Wilson</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>Head Pharmacist</p>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div className="team-card">
+                  <div className="team-avatar">SM</div>
+                  <h5 style={{ fontSize: '1.1rem' }}>Dr. Sarah Mitchell</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>Clinical Pharmacist</p>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div className="team-card">
+                  <div className="team-avatar">RC</div>
+                  <h5 style={{ fontSize: '1.1rem' }}>Robert Chen</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>Operations Manager</p>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div className="team-card">
+                  <div className="team-avatar">LT</div>
+                  <h5 style={{ fontSize: '1.1rem' }}>Lisa Thompson</h5>
+                  <p className="text-muted-custom mb-0" style={{ fontSize: '0.9rem' }}>Customer Relations</p>
+                </div>
+              </Col>
             </Row>
           </Container>
         </section>
