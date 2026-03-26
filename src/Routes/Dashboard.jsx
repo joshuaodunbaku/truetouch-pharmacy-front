@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { LayoutDashboard, Menu, X } from 'lucide-react';
+import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { LayoutDashboard, Menu, X, ShoppingCart, Package, Users, Settings, Home } from 'lucide-react';
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -24,7 +24,7 @@ const Dashboard = () => {
         </Container>
       </nav>
 
-      {/* Simple Sidebar */}
+      {/* Enhanced Sidebar */}
       <div style={{ display: 'flex' }}>
         <aside style={{
           width: sidebarOpen ? '250px' : '0',
@@ -34,15 +34,33 @@ const Dashboard = () => {
           overflow: 'hidden',
           minHeight: 'calc(100vh - 70px)'
         }}>
-          <div style={{ padding: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-              <LayoutDashboard size={20} />
-              <span>Dashboard</span>
-            </div>
-            <p style={{ color: '#6c757d', fontSize: '0.9rem' }}>
-              Simple dashboard layout
-            </p>
-          </div>
+          <Nav className="flex-column p-3">
+            <Nav.Link className="d-flex align-items-center active" style={{ color: '#007bff', fontWeight: '500' }}>
+              <LayoutDashboard size={18} className="me-2" />
+              Dashboard
+            </Nav.Link>
+            <Nav.Link className="d-flex align-items-center" style={{ color: '#6c757d' }}>
+              <ShoppingCart size={18} className="me-2" />
+              Orders
+            </Nav.Link>
+            <Nav.Link className="d-flex align-items-center" style={{ color: '#6c757d' }}>
+              <Package size={18} className="me-2" />
+              Products
+            </Nav.Link>
+            <Nav.Link className="d-flex align-items-center" style={{ color: '#6c757d' }}>
+              <Users size={18} className="me-2" />
+              Customers
+            </Nav.Link>
+            <hr style={{ borderColor: '#dee2e6' }} />
+            <Nav.Link className="d-flex align-items-center" style={{ color: '#6c757d' }}>
+              <Settings size={18} className="me-2" />
+              Settings
+            </Nav.Link>
+            <Nav.Link href="/" className="d-flex align-items-center" style={{ color: '#dc3545' }}>
+              <Home size={18} className="me-2" />
+              Back to Site
+            </Nav.Link>
+          </Nav>
         </aside>
 
         {/* Main Content */}
