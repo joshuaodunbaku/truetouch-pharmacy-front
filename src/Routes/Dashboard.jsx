@@ -54,6 +54,38 @@ const Dashboard = () => {
                 <p className="text-muted">This is the basic dashboard structure.</p>
               </Col>
             </Row>
+            
+            {/* Basic Stats */}
+            <Row className="g-3 mt-3">
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Total Revenue</h5>
+                  <h3 style={{ marginBottom: '0' }}>₦2,450,000</h3>
+                  <small style={{ color: '#28a745' }}>+12.5% from last month</small>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Orders</h5>
+                  <h3 style={{ marginBottom: '0' }}>342</h3>
+                  <small style={{ color: '#28a745' }}>+8.3% from last month</small>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Customers</h5>
+                  <h3 style={{ marginBottom: '0' }}>1,284</h3>
+                  <small style={{ color: '#28a745' }}>+5.7% from last month</small>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Products</h5>
+                  <h3 style={{ marginBottom: '0' }}>48</h3>
+                  <small style={{ color: '#6c757d' }}>No change</small>
+                </div>
+              </Col>
+            </Row>
           </Container>
         </main>
       </div>
