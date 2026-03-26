@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Table } from 'react-bootstrap';
 import { LayoutDashboard, Menu, X, ShoppingCart, Package, Users, Settings, Home } from 'lucide-react';
 
 const Dashboard = () => {
@@ -101,6 +101,51 @@ const Dashboard = () => {
                   <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Products</h5>
                   <h3 style={{ marginBottom: '0' }}>48</h3>
                   <small style={{ color: '#6c757d' }}>No change</small>
+                </div>
+              </Col>
+            </Row>
+            
+            {/* Recent Orders Table */}
+            <Row className="mt-4">
+              <Col>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 className="mb-3">Recent Orders</h5>
+                  <Table responsive>
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#ORD-001</td>
+                        <td>Sarah Johnson</td>
+                        <td>₦12,500</td>
+                        <td><span style={{ backgroundColor: '#28a745', color: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem' }}>Completed</span></td>
+                      </tr>
+                      <tr>
+                        <td>#ORD-002</td>
+                        <td>Michael Chen</td>
+                        <td>₦8,750</td>
+                        <td><span style={{ backgroundColor: '#ffc107', color: 'black', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem' }}>Processing</span></td>
+                      </tr>
+                      <tr>
+                        <td>#ORD-003</td>
+                        <td>Emily Davis</td>
+                        <td>₦15,200</td>
+                        <td><span style={{ backgroundColor: '#17a2b8', color: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem' }}>Shipped</span></td>
+                      </tr>
+                      <tr>
+                        <td>#ORD-004</td>
+                        <td>James Wilson</td>
+                        <td>₦6,300</td>
+                        <td><span style={{ backgroundColor: '#6c757d', color: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem' }}>Pending</span></td>
+                      </tr>
+                    </tbody>
+                  </Table>
                 </div>
               </Col>
             </Row>
