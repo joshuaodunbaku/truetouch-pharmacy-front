@@ -54,6 +54,38 @@ const Dashboard = () => {
                 <p className="text-muted">This is the basic dashboard structure.</p>
               </Col>
             </Row>
+            
+            {/* Stats Widgets */}
+            <Row className="g-3 mt-3">
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Total Revenue</h5>
+                  <h3 style={{ marginBottom: '0' }}>₦7,244,250</h3>
+                  <small style={{ color: '#28a745' }}>+12.5% from last period</small>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Total Orders</h5>
+                  <h3 style={{ marginBottom: '0' }}>1,248</h3>
+                  <small style={{ color: '#28a745' }}>+8.3% from last period</small>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Total Customers</h5>
+                  <h3 style={{ marginBottom: '0' }}>3,562</h3>
+                  <small style={{ color: '#28a745' }}>+5.7% from last period</small>
+                </div>
+              </Col>
+              <Col sm={6} lg={3}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Growth Rate</h5>
+                  <h3 style={{ marginBottom: '0' }}>23.8%</h3>
+                  <small style={{ color: '#dc3545' }}>-2.1% from last period</small>
+                </div>
+              </Col>
+            </Row>
           </Container>
         </main>
       </div>
