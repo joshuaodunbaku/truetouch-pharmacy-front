@@ -149,6 +149,37 @@ const Dashboard = () => {
                 </div>
               </Col>
             </Row>
+            
+            {/* Quick Actions */}
+            <Row className="mt-4">
+              <Col md={6}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 className="mb-3">Quick Actions</h5>
+                  <div className="d-grid gap-2">
+                    <button className="btn btn-primary btn-sm">Add New Product</button>
+                    <button className="btn btn-outline-primary btn-sm">View Reports</button>
+                    <button className="btn btn-outline-primary btn-sm">Manage Inventory</button>
+                  </div>
+                </div>
+              </Col>
+              <Col md={6}>
+                <div style={{ backgroundColor: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #dee2e6' }}>
+                  <h5 className="mb-3">System Status</h5>
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <span>Database</span>
+                    <span style={{ color: '#28a745' }}>● Online</span>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <span>Payment Gateway</span>
+                    <span style={{ color: '#28a745' }}>● Online</span>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span>Email Service</span>
+                    <span style={{ color: '#28a745' }}>● Online</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
           </Container>
         </main>
       </div>
