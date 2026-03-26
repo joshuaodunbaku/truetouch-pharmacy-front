@@ -25,4 +25,8 @@ dist-ssr
 
 # Unused page files
 src/Routes/Contact.jsx
+
+# Backup files
+*.backup
+src/Routes/Dashboard.jsx.backup
  
