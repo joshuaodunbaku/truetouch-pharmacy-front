@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 # Unused page files
-src/Routes/Contact.jsx
 
 # Backup files
 *.backup
